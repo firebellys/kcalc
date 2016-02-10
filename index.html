@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>Kcalc by kazamatzuri</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,730 +12,1069 @@
     <!--<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>-->
     <script src="lib/tools.js"></script>
     <script src="lib/calc.js"></script>
-  </head>
-  <body>
+</head>
+
+<body>
     <section class="page-header">
-      <h1 class="project-name">Kazamatzuri's AE calculator</h1>
-      <h2 class="project-tagline">Astro Empires battle math</h2>
+        <h1 class="project-name">Kazamatzuri's AE calculator</h1>
+        <h2 class="project-tagline">Astro Empires battle math</h2>
     </section>
 
     <section class="main-content">
-<div class='content'>
-            <span class='heading'>Battle Calculator</span><br/>
-            <table class='mainTable' cellpadding = '0' cellspacing='0'>
-              <tr align='center'>
-                <td>
-                  <table class='tech' id='attTech'>
-                    <tr><th colspan='3'>Attackers Technology <a class='helpButton' href='javascript: void(0);' onmouseover='showHelp("techH",this);' onmouseout='hideHelp("techH");'></a><br/><div class='reset'><a href='javascript:void(0);' onclick='resetTech("att");'>Reset Technology</a></div></th></tr>
-                    <tr>
-                      <td class='tHeading'>Technology</td>
-                      <td class='tHeading'>Level</td>
-                      <td class='tHeading'>Bonus</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Armour</td>
-                      <td class='tdInput'><input id='attArm' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='aArm'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Laser</td>
-                      <td class='tdInput'><input id='attLas' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='aLas'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Missiles</td>
-                      <td class='tdInput'><input id='attMis' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='aMis'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Plasma</td>
-                      <td class='tdInput'><input id='attPla' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='aPla'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Shielding</td>
-                      <td class='tdInput'><input id='attSld' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='aSld'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Ion</td>
-                      <td class='tdInput'><input id='attIon' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='aIon'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Photon</td>
-                      <td class='tdInput'><input id='attPho' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='aPho'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Disruptor</td>
-                      <td class='tdInput'><input id='attDis' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='aDis'>0</td>
-                    </tr>
-                    <tr><td colspan='3'><br/></td></tr>
-                    <tr>
-                      <td class='label'>Command Centers</td>
-                      <td class='tdInput'><input id='attCCs' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='aCCs'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Defense Commander</td>
-                      <td class='tdInput'><input id='attDfC' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this,1);'/></td>
-                      <td class='bonus' id='aDfC'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Tactical Commander</td>
-                      <td class='tdInput'><input id='attTaC' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this,1);'/></td>
-                      <td class='bonus' id='aTaC'>0</td>
-                    </tr>
-                    <tr><td colspan='3'><br/></td></tr>
-                    <tr>
-                      <td class='label'>Attacker Level</td>
-                      <td class='tdInput'><input type='text' id='attLevel' class='calcInput' maxlength='5' size='5' value='0' onchange='printBR();'/></td>
-                      <td></td>
-                    </tr>
-                  </table>
-                </td>
-                <td>
-                  <table class='tech' id='defTech'>
-                    <tr><th colspan='3'>Defenders Technology <a class='helpButton' href='javascript: void(0);' onmouseover='showHelp("techH",this);' onmouseout='hideHelp("techH");'></a><br/><div class='reset'><a href='javascript:void(0);' onclick='resetTech("def");'>Reset Technology</a></div></th></tr>
-                    <tr>
-                      <td class='tHeading'>Technology</td>
-                      <td class='tHeading'>Level</td>
-                      <td class='tHeading'>Bonus</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Armour</td>
-                      <td class='tdInput'><input id='defArm' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='dArm'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Laser</td>
-                      <td class='tdInput'><input id='defLas' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='dLas'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Missiles</td>
-                      <td class='tdInput'><input id='defMis' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='dMis'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Plasma</td>
-                      <td class='tdInput'><input id='defPla' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='dPla'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Shielding</td>
-                      <td class='tdInput'><input id='defSld' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='dSld'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Ion</td>
-                      <td class='tdInput'><input id='defIon' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='dIon'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Photon</td>
-                      <td class='tdInput'><input id='defPho' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='dPho'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Disruptor</td>
-                      <td class='tdInput'><input id='defDis' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='dDis'>0</td>
-                    </tr>
-                    <tr><td colspan='3'><br/></td></tr>
-                    <tr>
-                      <td class='label'>Command Centers</td>
-                      <td class='tdInput'><input id='defCCs' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'/></td>
-                      <td class='bonus' id='dCCs'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Defense Commander</td>
-                      <td class='tdInput'><input id='defDfC' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this,1);'/></td>
-                      <td class='bonus' id='dDfC'>0</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Tactical Commander</td>
-                      <td class='tdInput'><input id='defTaC' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this,1);'/></td>
-                      <td class='bonus' id='dTaC'>0</td>
-                    </tr>
-                    <tr><td colspan='3'><br/></td></tr>
-                    <tr>
-                      <td class='label'>Defender Level</td>
-                      <td  class='tdInput'><input type='text' id='defLevel' class='calcInput' maxlength='5' size='5' value='0' onchange='printBR();'/></td>
-                      <td></td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td colspan='2'><br/></td>
-              </tr>
-              <tr align='center'>
-                <td>
-                  <table class='units' id='attack'>
-                    <tr><th colspan='6'>Attacking Fleet <a class='helpButton' href='javascript: void(0);' onmouseover='showHelp("combH",this);' onmouseout='hideHelp("combH");'></a><br/><div class='reset'><a href='javascript:void(0);' onclick='resetUnits("att");'>Reset Units</a></div></th></tr>
-                    <tr>
-                      <td class='tHeading'>Unit</td>
-                      <td class='tHeading'>Qty</td>
-                      <td class='tHeading'>Pwr</td>
-                      <td class='tHeading'>Armr</td>
-                      <td class='tHeading'>Shld</td>
-                      <td class='tHeading'>Res</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Fighters</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attFT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aFTp'>0</td>
-                      <td class='staticValue highlightSV' id='aFTa'>0</td>
-                      <td class='staticValue' id='aFTs'>-</td>
-                      <td class='result' id='aFTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Bombers</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attBO" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aBOp'>0</td>
-                      <td class='staticValue highlightSV' id='aBOa'>0</td>
-                      <td class='staticValue' id='aBOs'>-</td>
-                      <td class='result' id='aBOr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Heavy Bombers</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attHB" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aHBp'>0</td>
-                      <td class='staticValue highlightSV' id='aHBa'>0</td>
-                      <td class='staticValue' id='aHBs'>-</td>
-                      <td class='result' id='aHBr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Ion Bombers</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attIB" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aIBp'>0</td>
-                      <td class='staticValue highlightSV' id='aIBa'>0</td>
-                      <td class='staticValue highlightSV' id='aIBs'>0</td>
-                      <td class='result' id='aIBr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Corvette</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attCV" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aCVp'>0</td>
-                      <td class='staticValue highlightSV' id='aCVa'>0</td>
-                      <td class='staticValue' id='aCVs'>-</td>
-                      <td class='result' id='aCVr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Recycler</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attRC" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aRCp'>0</td>
-                      <td class='staticValue highlightSV' id='aRCa'>0</td>
-                      <td class='staticValue' id='aRCs'>-</td>
-                      <td class='result' id='aRCr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Destroyer</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attDE" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aDEp'>0</td>
-                      <td class='staticValue highlightSV' id='aDEa'>0</td>
-                      <td class='staticValue' id='aDEs'>-</td>
-                      <td class='result' id='aDEr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Frigate</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attFR" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aFRp'>0</td>
-                      <td class='staticValue highlightSV' id='aFRa'>0</td>
-                      <td class='staticValue' id='aFRs'>-</td>
-                      <td class='result' id='aFRr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Ion Frigate</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attIF" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aIFp'>0</td>
-                      <td class='staticValue highlightSV' id='aIFa'>0</td>
-                      <td class='staticValue highlightSV' id='aIFs'>0</td>
-                      <td class='result' id='aIFr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Scout Ship</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attSS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aSSp'>0</td>
-                      <td class='staticValue highlightSV' id='aSSa'>0</td>
-                      <td class='staticValue' id='aSSs'>-</td>
-                      <td class='result' id='aSSr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Outpost Ship</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attOS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aOSp'>0</td>
-                      <td class='staticValue highlightSV' id='aOSa'>0</td>
-                      <td class='staticValue' id='aOSs'>-</td>
-                      <td class='result' id='aOSr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Cruiser</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attCR" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aCRp'>0</td>
-                      <td class='staticValue highlightSV' id='aCRa'>0</td>
-                      <td class='staticValue highlightSV' id='aCRs'>0</td>
-                      <td class='result' id='aCRr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Carrier</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attCA" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aCAp'>0</td>
-                      <td class='staticValue highlightSV' id='aCAa'>0</td>
-                      <td class='staticValue highlightSV' id='aCAs'>0</td>
-                      <td class='result' id='aCAr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Heavy Cruiser</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attHC" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aHCp'>0</td>
-                      <td class='staticValue highlightSV' id='aHCa'>0</td>
-                      <td class='staticValue highlightSV' id='aHCs'>0</td>
-                      <td class='result' id='aHCr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Battleship</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attBS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aBSp'>0</td>
-                      <td class='staticValue highlightSV' id='aBSa'>0</td>
-                      <td class='staticValue highlightSV' id='aBSs'>0</td>
-                      <td class='result' id='aBSr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Fleet Carrier</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attFC" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aFCp'>0</td>
-                      <td class='staticValue highlightSV' id='aFCa'>0</td>
-                      <td class='staticValue highlightSV' id='aFCs'>0</td>
-                      <td class='result' id='aFCr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Dreadnought</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attDN" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aDNp'>0</td>
-                      <td class='staticValue highlightSV' id='aDNa'>0</td>
-                      <td class='staticValue highlightSV' id='aDNs'>0</td>
-                      <td class='result' id='aDNr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Titan</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attTI" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aTIp'>0</td>
-                      <td class='staticValue highlightSV' id='aTIa'>0</td>
-                      <td class='staticValue highlightSV' id='aTIs'>0</td>
-                      <td class='result' id='aTIr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Leviathan</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attLE" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aLEp'>0</td>
-                      <td class='staticValue highlightSV' id='aLEa'>0</td>
-                      <td class='staticValue highlightSV' id='aLEs'>0</td>
-                      <td class='result' id='aLEr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Death Star</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attDS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aDSp'>0</td>
-                      <td class='staticValue highlightSV' id='aDSa'>0</td>
-                      <td class='staticValue highlightSV' id='aDSs'>0</td>
-                      <td class='result' id='aDSr'>-</td>
-                    </tr>
-                    <tr><td colspan='6'><br/></td></tr>
-                    <tr>
-                      <td class='label'>Barracks</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attBA" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aBAp'>0</td>
-                      <td class='staticValue highlightSV' id='aBAa'>0</td>
-                      <td class='staticValue' id='aBAs'>-</td>
-                      <td class='result' id='aBAr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Laser Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attLT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aLTp'>0</td>
-                      <td class='staticValue highlightSV' id='aLTa'>0</td>
-                      <td class='staticValue' id='aLTs'>-</td>
-                      <td class='result' id='aLTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Missile Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attMT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aMTp'>0</td>
-                      <td class='staticValue highlightSV' id='aMTa'>0</td>
-                      <td class='staticValue' id='aMTs'>-</td>
-                      <td class='result' id='aMTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Plasma Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attPT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aPTp'>0</td>
-                      <td class='staticValue highlightSV' id='aPTa'>0</td>
-                      <td class='staticValue' id='aPTs'>-</td>
-                      <td class='result' id='aPTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Ion Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attIT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aITp'>0</td>
-                      <td class='staticValue highlightSV' id='aITa'>0</td>
-                      <td class='staticValue highlightSV' id='aITs'>0</td>
-                      <td class='result' id='aITr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Photon Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attOT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aOTp'>0</td>
-                      <td class='staticValue highlightSV' id='aOTa'>0</td>
-                      <td class='staticValue highlightSV' id='aOTs'>0</td>
-                      <td class='result' id='aOTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Disruptor Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attDT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aDTp'>0</td>
-                      <td class='staticValue highlightSV' id='aDTa'>0</td>
-                      <td class='staticValue highlightSV' id='aDTs'>0</td>
-                      <td class='result' id='aDTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Deflection Sheilds</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attFS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aFSp'>0</td>
-                      <td class='staticValue highlightSV' id='aFSa'>0</td>
-                      <td class='staticValue highlightSV' id='aFSs'>0</td>
-                      <td class='result' id='aFSr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Planetary Shields</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attPS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aPSp'>0</td>
-                      <td class='staticValue highlightSV' id='aPSa'>0</td>
-                      <td class='staticValue highlightSV' id='aPSs'>0</td>
-                      <td class='result' id='aPSr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Planetary Ring</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="attPR" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='aPRp'>0</td>
-                      <td class='staticValue highlightSV' id='aPRa'>0</td>
-                      <td class='staticValue highlightSV' id='aPRs'>0</td>
-                      <td class='result' id='aPRr'>-</td>
-                    </tr>
-                  </table>
-                </td>
-                <td>
-                  <table class='units' id='defense'>
-                    <tr><th colspan='6'>Defending Fleet <a class='helpButton' href='javascript: void(0);' onmouseover='showHelp("combH",this);' onmouseout='hideHelp("combH");'></a><br/><div class='reset'><a href='javascript:void(0);' onclick='resetUnits("def");'>Reset Units</a></div></th></tr>
-                    <tr>
-                      <td class='tHeading'>Unit</td>
-                      <td class='tHeading'>Qty</td>
-                      <td class='tHeading'>Pwr</td>
-                      <td class='tHeading'>Armr</td>
-                      <td class='tHeading'>Shld</td>
-                      <td class='tHeading'>Res</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Fighters</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defFT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dFTp'>0</td>
-                      <td class='staticValue highlightSV' id='dFTa'>0</td>
-                      <td class='staticValue' id='dFTs'>-</td>
-                      <td class='result' id='dFTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Bombers</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defBO" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dBOp'>0</td>
-                      <td class='staticValue highlightSV' id='dBOa'>0</td>
-                      <td class='staticValue' id='dBOs'>-</td>
-                      <td class='result' id='dBOr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Heavy Bombers</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defHB" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dHBp'>0</td>
-                      <td class='staticValue highlightSV' id='dHBa'>0</td>
-                      <td class='staticValue' id='dHBs'>-</td>
-                      <td class='result' id='dHBr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Ion Bombers</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defIB" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dIBp'>0</td>
-                      <td class='staticValue highlightSV' id='dIBa'>0</td>
-                      <td class='staticValue highlightSV' id='dIBs'>0</td>
-                      <td class='result' id='dIBr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Corvette</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defCV" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dCVp'>0</td>
-                      <td class='staticValue highlightSV' id='dCVa'>0</td>
-                      <td class='staticValue' id='dCVs'>-</td>
-                      <td class='result' id='dCVr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Recycler</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defRC" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dRCp'>0</td>
-                      <td class='staticValue highlightSV' id='dRCa'>0</td>
-                      <td class='staticValue' id='dRCs'>-</td>
-                      <td class='result' id='dRCr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Destroyer</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defDE" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dDEp'>0</td>
-                      <td class='staticValue highlightSV' id='dDEa'>0</td>
-                      <td class='staticValue' id='dDEs'>-</td>
-                      <td class='result' id='dDEr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Frigate</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defFR" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dFRp'>0</td>
-                      <td class='staticValue highlightSV' id='dFRa'>0</td>
-                      <td class='staticValue' id='dFRs'>-</td>
-                      <td class='result' id='dFRr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Ion Frigate</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defIF" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dIFp'>0</td>
-                      <td class='staticValue highlightSV' id='dIFa'>0</td>
-                      <td class='staticValue highlightSV' id='dIFs'>0</td>
-                      <td class='result' id='dIFr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Scout Ship</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defSS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dSSp'>0</td>
-                      <td class='staticValue highlightSV' id='dSSa'>0</td>
-                      <td class='staticValue' id='dSSs'>-</td>
-                      <td class='result' id='dSSr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Outpost Ship</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defOS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dOSp'>0</td>
-                      <td class='staticValue highlightSV' id='dOSa'>0</td>
-                      <td class='staticValue' id='dOSs'>-</td>
-                      <td class='result' id='dOSr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Cruiser</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defCR" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dCRp'>0</td>
-                      <td class='staticValue highlightSV' id='dCRa'>0</td>
-                      <td class='staticValue highlightSV' id='dCRs'>0</td>
-                      <td class='result' id='dCRr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Carrier</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defCA" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dCAp'>0</td>
-                      <td class='staticValue highlightSV' id='dCAa'>0</td>
-                      <td class='staticValue highlightSV' id='dCAs'>0</td>
-                      <td class='result' id='dCAr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Heavy Cruiser</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defHC" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dHCp'>0</td>
-                      <td class='staticValue highlightSV' id='dHCa'>0</td>
-                      <td class='staticValue highlightSV' id='dHCs'>0</td>
-                      <td class='result' id='dHCr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Battleship</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defBS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dBSp'>0</td>
-                      <td class='staticValue highlightSV' id='dBSa'>0</td>
-                      <td class='staticValue highlightSV' id='dBSs'>0</td>
-                      <td class='result' id='dBSr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Fleet Carrier</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defFC" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dFCp'>0</td>
-                      <td class='staticValue highlightSV' id='dFCa'>0</td>
-                      <td class='staticValue highlightSV' id='dFCs'>0</td>
-                      <td class='result' id='dFCr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Dreadnought</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defDN" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dDNp'>0</td>
-                      <td class='staticValue highlightSV' id='dDNa'>0</td>
-                      <td class='staticValue highlightSV' id='dDNs'>0</td>
-                      <td class='result' id='dDNr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Titan</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defTI" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dTIp'>0</td>
-                      <td class='staticValue highlightSV' id='dTIa'>0</td>
-                      <td class='staticValue highlightSV' id='dTIs'>0</td>
-                      <td class='result' id='dTIr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Leviathan</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defLE" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dLEp'>0</td>
-                      <td class='staticValue highlightSV' id='dLEa'>0</td>
-                      <td class='staticValue highlightSV' id='dLEs'>0</td>
-                      <td class='result' id='dLEr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Death Star</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defDS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dDSp'>0</td>
-                      <td class='staticValue highlightSV' id='dDSa'>0</td>
-                      <td class='staticValue highlightSV' id='dDSs'>0</td>
-                      <td class='result' id='dDSr'>-</td>
-                    </tr>
-                    <tr><td colspan='6'><br/></td></tr>
-                    <tr>
-                      <td class='label'>Barracks</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defBA" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dBAp'>0</td>
-                      <td class='staticValue highlightSV' id='dBAa'>0</td>
-                      <td class='staticValue' id='dBAs'>-</td>
-                      <td class='result' id='dBAr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Laser Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defLT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dLTp'>0</td>
-                      <td class='staticValue highlightSV' id='dLTa'>0</td>
-                      <td class='staticValue' id='dLTs'>-</td>
-                      <td class='result' id='dLTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Missile Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defMT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dMTp'>0</td>
-                      <td class='staticValue highlightSV' id='dMTa'>0</td>
-                      <td class='staticValue' id='dMTs'>-</td>
-                      <td class='result' id='dMTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Plasma Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defPT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dPTp'>0</td>
-                      <td class='staticValue highlightSV' id='dPTa'>0</td>
-                      <td class='staticValue' id='dPTs'>-</td>
-                      <td class='result' id='dPTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Ion Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defIT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dITp'>0</td>
-                      <td class='staticValue highlightSV' id='dITa'>0</td>
-                      <td class='staticValue highlightSV' id='dITs'>0</td>
-                      <td class='result' id='dITr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Photon Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defOT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dOTp'>0</td>
-                      <td class='staticValue highlightSV' id='dOTa'>0</td>
-                      <td class='staticValue highlightSV' id='dOTs'>0</td>
-                      <td class='result' id='dOTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Disruptor Turrets</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defDT" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dDTp'>0</td>
-                      <td class='staticValue highlightSV' id='dDTa'>0</td>
-                      <td class='staticValue highlightSV' id='dDTs'>0</td>
-                      <td class='result' id='dDTr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Deflection Sheilds</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defFS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dFSp'>0</td>
-                      <td class='staticValue highlightSV' id='dFSa'>0</td>
-                      <td class='staticValue highlightSV' id='dFSs'>0</td>
-                      <td class='result' id='dFSr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Planetary Shields</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defPS" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dPSp'>0</td>
-                      <td class='staticValue highlightSV' id='dPSa'>0</td>
-                      <td class='staticValue highlightSV' id='dPSs'>0</td>
-                      <td class='result' id='dPSr'>-</td>
-                    </tr>
-                    <tr>
-                      <td class='label'>Planetary Ring</td>
-                      <td class='tdInput'><input type="text" size="5" value="0" class="calcInput" id="defPR" onchange='unitValueUpdate(this);'/></td>
-                      <td class='staticValue highlightSV' id='dPRp'>0</td>
-                      <td class='staticValue highlightSV' id='dPRa'>0</td>
-                      <td class='staticValue highlightSV' id='dPRs'>0</td>
-                      <td class='result' id='dPRr'>-</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td colspan='2'><br/></td>
-              </tr>
-              <tr align='center'>
-                <td colspan='2'>
-                  <script>brPillageInit();</script>
-                </td>
-              </tr>
-              <tr>
-                <td colspan='2'><br/></td>
-              </tr>
-              <tr align='center'>
-                <td colspan='2'>
-                  <table class='br' id='br'>
-                    <tr><th>Battle Report</th></tr>
-                    <tr><td id='unitRes'>Total cost of units destroyed: 0( Attacker: 0 ; Defender: 0 )</td></tr>
-                    <tr><td id='xpRes'><small>Estimated Experience: ( Attacker: +0 ; Defender: +0 )</small></td></tr>
-                    <tr><td id='derbRes'>Estimated debris in space: 0</td></tr>
-                    <tr><td id='pillRes'></td></tr>
-                    <tr><td id='profitRes'>Estimated attacker profit: 0</td></tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td colspan='2'><br/></td>
-              </tr>
-             
+        <div class='content'>
+            <span class='heading'>Battle Calculator</span>
+            <br/>
+            <table class='mainTable' cellpadding='0' cellspacing='0'>
+                <tr align='center'>
+                    <td colspan="2">
+                        <textarea id="pastaArea" cols="50" rows="10"></textarea>
+                        <br/>
+                        <input type="button" value="Paste from Clipboard" onclick="pullFromClipboard();">
+                    </td>
+                </tr>
+
+                <tr align='center'>
+                    <td>
+                        <table class='tech' id='attTech'>
+                            <tr>
+                                <th colspan='3'>Attackers Technology
+                                    <a class='helpButton' href='javascript: void(0);' onmouseover='showHelp("techH",this);'
+                                    onmouseout='hideHelp("techH");'></a>
+                                    <br/>
+                                    <div class='reset'><a href='javascript:void(0);' onclick='resetTech("att");'>Reset Technology</a></div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class='tHeading'>Technology</td>
+                                <td class='tHeading'>Level</td>
+                                <td class='tHeading'>Bonus</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Armour</td>
+                                <td class='tdInput'>
+                                    <input id='attArm' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='aArm'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Laser</td>
+                                <td class='tdInput'>
+                                    <input id='attLas' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='aLas'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Missiles</td>
+                                <td class='tdInput'>
+                                    <input id='attMis' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='aMis'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Plasma</td>
+                                <td class='tdInput'>
+                                    <input id='attPla' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='aPla'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Shielding</td>
+                                <td class='tdInput'>
+                                    <input id='attSld' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='aSld'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Ion</td>
+                                <td class='tdInput'>
+                                    <input id='attIon' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='aIon'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Photon</td>
+                                <td class='tdInput'>
+                                    <input id='attPho' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='aPho'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Disruptor</td>
+                                <td class='tdInput'>
+                                    <input id='attDis' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='aDis'>0</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3'>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Command Centers</td>
+                                <td class='tdInput'>
+                                    <input id='attCCs' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='aCCs'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Defense Commander</td>
+                                <td class='tdInput'>
+                                    <input id='attDfC' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this,1);'
+                                    />
+                                </td>
+                                <td class='bonus' id='aDfC'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Tactical Commander</td>
+                                <td class='tdInput'>
+                                    <input id='attTaC' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this,1);'
+                                    />
+                                </td>
+                                <td class='bonus' id='aTaC'>0</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3'>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Attacker Level</td>
+                                <td class='tdInput'>
+                                    <input type='text' id='attLevel' class='calcInput' maxlength='5' size='5' value='0' onchange='printBR();'
+                                    />
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table class='tech' id='defTech'>
+                            <tr>
+                                <th colspan='3'>Defenders Technology
+                                    <a class='helpButton' href='javascript: void(0);' onmouseover='showHelp("techH",this);'
+                                    onmouseout='hideHelp("techH");'></a>
+                                    <br/>
+                                    <div class='reset'><a href='javascript:void(0);' onclick='resetTech("def");'>Reset Technology</a></div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class='tHeading'>Technology</td>
+                                <td class='tHeading'>Level</td>
+                                <td class='tHeading'>Bonus</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Armour</td>
+                                <td class='tdInput'>
+                                    <input id='defArm' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='dArm'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Laser</td>
+                                <td class='tdInput'>
+                                    <input id='defLas' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='dLas'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Missiles</td>
+                                <td class='tdInput'>
+                                    <input id='defMis' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='dMis'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Plasma</td>
+                                <td class='tdInput'>
+                                    <input id='defPla' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='dPla'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Shielding</td>
+                                <td class='tdInput'>
+                                    <input id='defSld' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='dSld'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Ion</td>
+                                <td class='tdInput'>
+                                    <input id='defIon' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='dIon'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Photon</td>
+                                <td class='tdInput'>
+                                    <input id='defPho' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='dPho'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Disruptor</td>
+                                <td class='tdInput'>
+                                    <input id='defDis' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='dDis'>0</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3'>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Command Centers</td>
+                                <td class='tdInput'>
+                                    <input id='defCCs' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this);'
+                                    />
+                                </td>
+                                <td class='bonus' id='dCCs'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Defense Commander</td>
+                                <td class='tdInput'>
+                                    <input id='defDfC' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this,1);'
+                                    />
+                                </td>
+                                <td class='bonus' id='dDfC'>0</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Tactical Commander</td>
+                                <td class='tdInput'>
+                                    <input id='defTaC' type='text' class='calcInput' value='0' size='5' onchange='calcTech(this,1);'
+                                    />
+                                </td>
+                                <td class='bonus' id='dTaC'>0</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3'>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Defender Level</td>
+                                <td class='tdInput'>
+                                    <input type='text' id='defLevel' class='calcInput' maxlength='5' size='5' value='0' onchange='printBR();'
+                                    />
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <br/>
+                    </td>
+                </tr>
+                <tr align='center'>
+                    <td>
+                        <table class='units' id='attack'>
+                            <tr>
+                                <th colspan='6'>Attacking Fleet
+                                    <a class='helpButton' href='javascript: void(0);' onmouseover='showHelp("combH",this);'
+                                    onmouseout='hideHelp("combH");'></a>
+                                    <br/>
+                                    <div class='reset'><a href='javascript:void(0);' onclick='resetUnits("att");'>Reset Units</a></div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class='tHeading'>Unit</td>
+                                <td class='tHeading'>Qty</td>
+                                <td class='tHeading'>Pwr</td>
+                                <td class='tHeading'>Armr</td>
+                                <td class='tHeading'>Shld</td>
+                                <td class='tHeading'>Res</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Fighters</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attFT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aFTp'>0</td>
+                                <td class='staticValue highlightSV' id='aFTa'>0</td>
+                                <td class='staticValue' id='aFTs'>-</td>
+                                <td class='result' id='aFTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Bombers</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attBO" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aBOp'>0</td>
+                                <td class='staticValue highlightSV' id='aBOa'>0</td>
+                                <td class='staticValue' id='aBOs'>-</td>
+                                <td class='result' id='aBOr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Heavy Bombers</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attHB" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aHBp'>0</td>
+                                <td class='staticValue highlightSV' id='aHBa'>0</td>
+                                <td class='staticValue' id='aHBs'>-</td>
+                                <td class='result' id='aHBr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Ion Bombers</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attIB" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aIBp'>0</td>
+                                <td class='staticValue highlightSV' id='aIBa'>0</td>
+                                <td class='staticValue highlightSV' id='aIBs'>0</td>
+                                <td class='result' id='aIBr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Corvette</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attCV" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aCVp'>0</td>
+                                <td class='staticValue highlightSV' id='aCVa'>0</td>
+                                <td class='staticValue' id='aCVs'>-</td>
+                                <td class='result' id='aCVr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Recycler</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attRC" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aRCp'>0</td>
+                                <td class='staticValue highlightSV' id='aRCa'>0</td>
+                                <td class='staticValue' id='aRCs'>-</td>
+                                <td class='result' id='aRCr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Destroyer</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attDE" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aDEp'>0</td>
+                                <td class='staticValue highlightSV' id='aDEa'>0</td>
+                                <td class='staticValue' id='aDEs'>-</td>
+                                <td class='result' id='aDEr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Frigate</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attFR" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aFRp'>0</td>
+                                <td class='staticValue highlightSV' id='aFRa'>0</td>
+                                <td class='staticValue' id='aFRs'>-</td>
+                                <td class='result' id='aFRr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Ion Frigate</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attIF" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aIFp'>0</td>
+                                <td class='staticValue highlightSV' id='aIFa'>0</td>
+                                <td class='staticValue highlightSV' id='aIFs'>0</td>
+                                <td class='result' id='aIFr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Scout Ship</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attSS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aSSp'>0</td>
+                                <td class='staticValue highlightSV' id='aSSa'>0</td>
+                                <td class='staticValue' id='aSSs'>-</td>
+                                <td class='result' id='aSSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Outpost Ship</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attOS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aOSp'>0</td>
+                                <td class='staticValue highlightSV' id='aOSa'>0</td>
+                                <td class='staticValue' id='aOSs'>-</td>
+                                <td class='result' id='aOSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Cruiser</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attCR" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aCRp'>0</td>
+                                <td class='staticValue highlightSV' id='aCRa'>0</td>
+                                <td class='staticValue highlightSV' id='aCRs'>0</td>
+                                <td class='result' id='aCRr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Carrier</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attCA" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aCAp'>0</td>
+                                <td class='staticValue highlightSV' id='aCAa'>0</td>
+                                <td class='staticValue highlightSV' id='aCAs'>0</td>
+                                <td class='result' id='aCAr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Heavy Cruiser</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attHC" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aHCp'>0</td>
+                                <td class='staticValue highlightSV' id='aHCa'>0</td>
+                                <td class='staticValue highlightSV' id='aHCs'>0</td>
+                                <td class='result' id='aHCr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Battleship</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attBS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aBSp'>0</td>
+                                <td class='staticValue highlightSV' id='aBSa'>0</td>
+                                <td class='staticValue highlightSV' id='aBSs'>0</td>
+                                <td class='result' id='aBSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Fleet Carrier</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attFC" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aFCp'>0</td>
+                                <td class='staticValue highlightSV' id='aFCa'>0</td>
+                                <td class='staticValue highlightSV' id='aFCs'>0</td>
+                                <td class='result' id='aFCr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Dreadnought</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attDN" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aDNp'>0</td>
+                                <td class='staticValue highlightSV' id='aDNa'>0</td>
+                                <td class='staticValue highlightSV' id='aDNs'>0</td>
+                                <td class='result' id='aDNr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Titan</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attTI" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aTIp'>0</td>
+                                <td class='staticValue highlightSV' id='aTIa'>0</td>
+                                <td class='staticValue highlightSV' id='aTIs'>0</td>
+                                <td class='result' id='aTIr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Leviathan</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attLE" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aLEp'>0</td>
+                                <td class='staticValue highlightSV' id='aLEa'>0</td>
+                                <td class='staticValue highlightSV' id='aLEs'>0</td>
+                                <td class='result' id='aLEr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Death Star</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attDS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aDSp'>0</td>
+                                <td class='staticValue highlightSV' id='aDSa'>0</td>
+                                <td class='staticValue highlightSV' id='aDSs'>0</td>
+                                <td class='result' id='aDSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td colspan='6'>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Barracks</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attBA" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aBAp'>0</td>
+                                <td class='staticValue highlightSV' id='aBAa'>0</td>
+                                <td class='staticValue' id='aBAs'>-</td>
+                                <td class='result' id='aBAr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Laser Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attLT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aLTp'>0</td>
+                                <td class='staticValue highlightSV' id='aLTa'>0</td>
+                                <td class='staticValue' id='aLTs'>-</td>
+                                <td class='result' id='aLTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Missile Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attMT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aMTp'>0</td>
+                                <td class='staticValue highlightSV' id='aMTa'>0</td>
+                                <td class='staticValue' id='aMTs'>-</td>
+                                <td class='result' id='aMTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Plasma Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attPT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aPTp'>0</td>
+                                <td class='staticValue highlightSV' id='aPTa'>0</td>
+                                <td class='staticValue' id='aPTs'>-</td>
+                                <td class='result' id='aPTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Ion Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attIT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aITp'>0</td>
+                                <td class='staticValue highlightSV' id='aITa'>0</td>
+                                <td class='staticValue highlightSV' id='aITs'>0</td>
+                                <td class='result' id='aITr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Photon Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attOT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aOTp'>0</td>
+                                <td class='staticValue highlightSV' id='aOTa'>0</td>
+                                <td class='staticValue highlightSV' id='aOTs'>0</td>
+                                <td class='result' id='aOTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Disruptor Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attDT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aDTp'>0</td>
+                                <td class='staticValue highlightSV' id='aDTa'>0</td>
+                                <td class='staticValue highlightSV' id='aDTs'>0</td>
+                                <td class='result' id='aDTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Deflection Sheilds</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attFS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aFSp'>0</td>
+                                <td class='staticValue highlightSV' id='aFSa'>0</td>
+                                <td class='staticValue highlightSV' id='aFSs'>0</td>
+                                <td class='result' id='aFSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Planetary Shields</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attPS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aPSp'>0</td>
+                                <td class='staticValue highlightSV' id='aPSa'>0</td>
+                                <td class='staticValue highlightSV' id='aPSs'>0</td>
+                                <td class='result' id='aPSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Planetary Ring</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="attPR" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='aPRp'>0</td>
+                                <td class='staticValue highlightSV' id='aPRa'>0</td>
+                                <td class='staticValue highlightSV' id='aPRs'>0</td>
+                                <td class='result' id='aPRr'>-</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table class='units' id='defense'>
+                            <tr>
+                                <th colspan='6'>Defending Fleet
+                                    <a class='helpButton' href='javascript: void(0);' onmouseover='showHelp("combH",this);'
+                                    onmouseout='hideHelp("combH");'></a>
+                                    <br/>
+                                    <div class='reset'><a href='javascript:void(0);' onclick='resetUnits("def");'>Reset Units</a></div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class='tHeading'>Unit</td>
+                                <td class='tHeading'>Qty</td>
+                                <td class='tHeading'>Pwr</td>
+                                <td class='tHeading'>Armr</td>
+                                <td class='tHeading'>Shld</td>
+                                <td class='tHeading'>Res</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Fighters</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defFT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dFTp'>0</td>
+                                <td class='staticValue highlightSV' id='dFTa'>0</td>
+                                <td class='staticValue' id='dFTs'>-</td>
+                                <td class='result' id='dFTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Bombers</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defBO" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dBOp'>0</td>
+                                <td class='staticValue highlightSV' id='dBOa'>0</td>
+                                <td class='staticValue' id='dBOs'>-</td>
+                                <td class='result' id='dBOr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Heavy Bombers</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defHB" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dHBp'>0</td>
+                                <td class='staticValue highlightSV' id='dHBa'>0</td>
+                                <td class='staticValue' id='dHBs'>-</td>
+                                <td class='result' id='dHBr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Ion Bombers</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defIB" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dIBp'>0</td>
+                                <td class='staticValue highlightSV' id='dIBa'>0</td>
+                                <td class='staticValue highlightSV' id='dIBs'>0</td>
+                                <td class='result' id='dIBr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Corvette</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defCV" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dCVp'>0</td>
+                                <td class='staticValue highlightSV' id='dCVa'>0</td>
+                                <td class='staticValue' id='dCVs'>-</td>
+                                <td class='result' id='dCVr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Recycler</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defRC" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dRCp'>0</td>
+                                <td class='staticValue highlightSV' id='dRCa'>0</td>
+                                <td class='staticValue' id='dRCs'>-</td>
+                                <td class='result' id='dRCr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Destroyer</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defDE" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dDEp'>0</td>
+                                <td class='staticValue highlightSV' id='dDEa'>0</td>
+                                <td class='staticValue' id='dDEs'>-</td>
+                                <td class='result' id='dDEr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Frigate</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defFR" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dFRp'>0</td>
+                                <td class='staticValue highlightSV' id='dFRa'>0</td>
+                                <td class='staticValue' id='dFRs'>-</td>
+                                <td class='result' id='dFRr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Ion Frigate</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defIF" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dIFp'>0</td>
+                                <td class='staticValue highlightSV' id='dIFa'>0</td>
+                                <td class='staticValue highlightSV' id='dIFs'>0</td>
+                                <td class='result' id='dIFr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Scout Ship</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defSS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dSSp'>0</td>
+                                <td class='staticValue highlightSV' id='dSSa'>0</td>
+                                <td class='staticValue' id='dSSs'>-</td>
+                                <td class='result' id='dSSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Outpost Ship</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defOS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dOSp'>0</td>
+                                <td class='staticValue highlightSV' id='dOSa'>0</td>
+                                <td class='staticValue' id='dOSs'>-</td>
+                                <td class='result' id='dOSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Cruiser</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defCR" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dCRp'>0</td>
+                                <td class='staticValue highlightSV' id='dCRa'>0</td>
+                                <td class='staticValue highlightSV' id='dCRs'>0</td>
+                                <td class='result' id='dCRr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Carrier</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defCA" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dCAp'>0</td>
+                                <td class='staticValue highlightSV' id='dCAa'>0</td>
+                                <td class='staticValue highlightSV' id='dCAs'>0</td>
+                                <td class='result' id='dCAr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Heavy Cruiser</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defHC" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dHCp'>0</td>
+                                <td class='staticValue highlightSV' id='dHCa'>0</td>
+                                <td class='staticValue highlightSV' id='dHCs'>0</td>
+                                <td class='result' id='dHCr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Battleship</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defBS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dBSp'>0</td>
+                                <td class='staticValue highlightSV' id='dBSa'>0</td>
+                                <td class='staticValue highlightSV' id='dBSs'>0</td>
+                                <td class='result' id='dBSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Fleet Carrier</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defFC" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dFCp'>0</td>
+                                <td class='staticValue highlightSV' id='dFCa'>0</td>
+                                <td class='staticValue highlightSV' id='dFCs'>0</td>
+                                <td class='result' id='dFCr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Dreadnought</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defDN" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dDNp'>0</td>
+                                <td class='staticValue highlightSV' id='dDNa'>0</td>
+                                <td class='staticValue highlightSV' id='dDNs'>0</td>
+                                <td class='result' id='dDNr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Titan</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defTI" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dTIp'>0</td>
+                                <td class='staticValue highlightSV' id='dTIa'>0</td>
+                                <td class='staticValue highlightSV' id='dTIs'>0</td>
+                                <td class='result' id='dTIr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Leviathan</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defLE" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dLEp'>0</td>
+                                <td class='staticValue highlightSV' id='dLEa'>0</td>
+                                <td class='staticValue highlightSV' id='dLEs'>0</td>
+                                <td class='result' id='dLEr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Death Star</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defDS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dDSp'>0</td>
+                                <td class='staticValue highlightSV' id='dDSa'>0</td>
+                                <td class='staticValue highlightSV' id='dDSs'>0</td>
+                                <td class='result' id='dDSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td colspan='6'>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Barracks</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defBA" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dBAp'>0</td>
+                                <td class='staticValue highlightSV' id='dBAa'>0</td>
+                                <td class='staticValue' id='dBAs'>-</td>
+                                <td class='result' id='dBAr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Laser Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defLT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dLTp'>0</td>
+                                <td class='staticValue highlightSV' id='dLTa'>0</td>
+                                <td class='staticValue' id='dLTs'>-</td>
+                                <td class='result' id='dLTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Missile Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defMT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dMTp'>0</td>
+                                <td class='staticValue highlightSV' id='dMTa'>0</td>
+                                <td class='staticValue' id='dMTs'>-</td>
+                                <td class='result' id='dMTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Plasma Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defPT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dPTp'>0</td>
+                                <td class='staticValue highlightSV' id='dPTa'>0</td>
+                                <td class='staticValue' id='dPTs'>-</td>
+                                <td class='result' id='dPTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Ion Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defIT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dITp'>0</td>
+                                <td class='staticValue highlightSV' id='dITa'>0</td>
+                                <td class='staticValue highlightSV' id='dITs'>0</td>
+                                <td class='result' id='dITr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Photon Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defOT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dOTp'>0</td>
+                                <td class='staticValue highlightSV' id='dOTa'>0</td>
+                                <td class='staticValue highlightSV' id='dOTs'>0</td>
+                                <td class='result' id='dOTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Disruptor Turrets</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defDT" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dDTp'>0</td>
+                                <td class='staticValue highlightSV' id='dDTa'>0</td>
+                                <td class='staticValue highlightSV' id='dDTs'>0</td>
+                                <td class='result' id='dDTr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Deflection Sheilds</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defFS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dFSp'>0</td>
+                                <td class='staticValue highlightSV' id='dFSa'>0</td>
+                                <td class='staticValue highlightSV' id='dFSs'>0</td>
+                                <td class='result' id='dFSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Planetary Shields</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defPS" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dPSp'>0</td>
+                                <td class='staticValue highlightSV' id='dPSa'>0</td>
+                                <td class='staticValue highlightSV' id='dPSs'>0</td>
+                                <td class='result' id='dPSr'>-</td>
+                            </tr>
+                            <tr>
+                                <td class='label'>Planetary Ring</td>
+                                <td class='tdInput'>
+                                    <input type="text" size="5" value="0" class="calcInput" id="defPR" onchange='unitValueUpdate(this);'
+                                    />
+                                </td>
+                                <td class='staticValue highlightSV' id='dPRp'>0</td>
+                                <td class='staticValue highlightSV' id='dPRa'>0</td>
+                                <td class='staticValue highlightSV' id='dPRs'>0</td>
+                                <td class='result' id='dPRr'>-</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <br/>
+                    </td>
+                </tr>
+                <tr align='center'>
+                    <td colspan='2'>
+                        <script>
+                            brPillageInit();
+                        </script>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <br/>
+                    </td>
+                </tr>
+                <tr align='center'>
+                    <td colspan='2'>
+                        <table class='br' id='br'>
+                            <tr>
+                                <th>Battle Report</th>
+                            </tr>
+                            <tr>
+                                <td id='unitRes'>Total cost of units destroyed: 0( Attacker: 0 ; Defender: 0 )</td>
+                            </tr>
+                            <tr>
+                                <td id='xpRes'><small>Estimated Experience: ( Attacker: +0 ; Defender: +0 )</small></td>
+                            </tr>
+                            <tr>
+                                <td id='derbRes'>Estimated debris in space: 0</td>
+                            </tr>
+                            <tr>
+                                <td id='pillRes'></td>
+                            </tr>
+                            <tr>
+                                <td id='profitRes'>Estimated attacker profit: 0</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <br/>
+                    </td>
+                </tr>
+
             </table>
-            <script>calcInit();
-                          </script>
-            <br/><br/>
-          </div>
+            <script>
+                calcInit();
+            </script>
+            <br/>
+            <br/>
+        </div>
 
 
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/kazamatzuri/kcalc">Kcalc</a> is maintained by <a href="https://github.com/kazamatzuri">kazamatzuri</a>.</span>
-        <span class="site-footer-owner">Based on <a href="https://vig.vg/AE/aeBattleCalc.php">AE calc</a> by Vig.</span>
+        <footer class="site-footer">
+            <span class="site-footer-owner"><a href="https://github.com/kazamatzuri/kcalc">Kcalc</a> is maintained by <a href="https://github.com/kazamatzuri">kazamatzuri</a>.</span>
+            <span class="site-footer-owner">Based on <a href="https://vig.vg/AE/aeBattleCalc.php">AE calc</a> by Vig.</span>
 
-      
-      </footer>
+
+        </footer>
 
     </section>
 
-            <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
+    </script>
+    <script type="text/javascript">
+        try {
               var pageTracker = _gat._getTracker("UA-73356895-1");
             pageTracker._trackPageview();
             } catch(err) {}
-          </script>
+    </script>
 
-  </body>
+</body>
+
 </html>
